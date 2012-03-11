@@ -198,31 +198,5 @@ class Rule:
 
 
 if __name__ == '__main__':
-    turns = Turns(size=12)
-    roles = RoleList()
-    part = Participants()
-    white = Player("white")
-    white_cstore = Store("cstore", "set", "public", white)
-    black = Player("black")
-    black_cstore = Store("cstore", "set", "public", black)
-
-    
-    rules = [ Rule(str(count)) for count in xrange(1,6) ]
-
-    comp = Composition(turns, part, [black, white], [white_cstore, black_cstore], roles)
-    game = Game("dgdl_simple", comp, rules)
-    print game.fragment()
-
-#    testsystem = System("TESTSYSTEM")
-
-#    testsystem.add_game(testgame)
-
-#    testplayer1 = Player("black", "hello", "world")
-#    print testplayer1.fragment()
-
-#    testplayer2 = Player("white")
-#    print testplayer2.fragment()
-    
-#    teststore = Store("1", "2", "3", testplayer1, testplayer2)
-#    print teststore.fragment()
+    print "Dialogue Game Description Language (DGDL)"
 
