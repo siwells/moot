@@ -19,6 +19,14 @@ class Game:
         self.name = name
         self.comp = comp
 
+    def fragment(self):
+        fragments = []
+        fragments.append(self.name)
+        fragments.append("{")
+        fragments.append(self.comp.fragment())
+        fragments.append("}")
+        return ''.join(fragments)
+
 class Composition:
     """
     A Composition defines the components of the game such as the board and pieces
@@ -180,10 +188,9 @@ if __name__ == '__main__':
     black = Player("black")
     black_cstore = Store("cstore", "set", "public", black)
     comp = Composition(turns, part, [black, white], [white_cstore, black_cstore], roles)
-    print comp.fragment()
+    game = Game("dgdl_simple", comp)
+    print game.fragment()
 
-
-#    testgame = Game("TESTGAME", comp)
 #    testsystem = System("TESTSYSTEM")
 
 #    testsystem.add_game(testgame)
