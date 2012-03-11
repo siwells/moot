@@ -32,9 +32,6 @@ class Composition:
 
     def fragment(self):
         fragments = []
-#        opener = "{"
-#        fragments.append(opener)
-
         fragments.append(self.turns.fragment())
         fragments.append(", ")
         if self.rolelist is not None:
@@ -47,8 +44,6 @@ class Composition:
         for store in self.stores:
             fragments.append(", ")
             fragments.append(store.fragment())
-#        closer = "}"
-#        fragments.append(closer)
         return ''.join(fragments)
 
 class Turns:
