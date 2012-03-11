@@ -15,15 +15,20 @@ class Game:
     """
     A Game composed from a composition, zero or more rules, and at least one interaction
     """
-    def __init__(self, name, comp):
+    def __init__(self, name, comp, rules=[]):
         self.name = name
         self.comp = comp
+        self.rules = rules
 
     def fragment(self):
         fragments = []
         fragments.append(self.name)
         fragments.append("{")
         fragments.append(self.comp.fragment())
+        if len(self.rules) != 0:
+            fragments.append(", {")
+            fragments.append(', '.join( rule.fragment() for rule in self.rules ))
+            fragments.append("}")
         fragments.append("}")
         return ''.join(fragments)
 
@@ -179,6 +184,19 @@ class Player:
         fragments.append(closer)
         return ''.join(fragments)
 
+class Rule:
+    """
+    Defines a rule for the game.
+
+    A Rule is a set of conditions which, if satisfied, require an effect to be performed on the state of the game. Rules differ from interactions in that rules should be executed whenever their conditions are met whereas interactions are only executed if a player plays the move associated with that interaction
+    """
+    def __init__(self, name):
+        self.name = name
+
+    def fragment(self):
+        return "{RULE"+self.name+"}"
+
+
 if __name__ == '__main__':
     turns = Turns(size=12)
     roles = RoleList()
@@ -187,8 +205,12 @@ if __name__ == '__main__':
     white_cstore = Store("cstore", "set", "public", white)
     black = Player("black")
     black_cstore = Store("cstore", "set", "public", black)
+
+    
+    rules = [ Rule(str(count)) for count in xrange(1,6) ]
+
     comp = Composition(turns, part, [black, white], [white_cstore, black_cstore], roles)
-    game = Game("dgdl_simple", comp)
+    game = Game("dgdl_simple", comp, rules)
     print game.fragment()
 
 #    testsystem = System("TESTSYSTEM")
