@@ -36,6 +36,7 @@ class Composition:
 #        fragments.append(opener)
 
         fragments.append(self.turns.fragment())
+        fragments.append(", ")
         if self.rolelist is not None:
             fragments.append(self.turns.fragment())
         fragments.append(", ")
