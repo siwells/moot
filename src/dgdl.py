@@ -196,6 +196,26 @@ class Rule:
     def fragment(self):
         return "{RULE"+self.name+"}"
 
+class Interaction:
+    """
+    Defines individual moves of the game.
+    
+    Moves are used by a player to interact with the game pieces & thereby change the state of the game.
+    """
+    def __init__(self, name):
+        self.name = name
+        
+    def fragment(self):
+        fragments = []
+        opener = "{"
+        fragments.append(opener)
+        fragments.append(self.name)
+        
+        closer = "}"
+        fragments.append(closer)
+        return ''.join(fragments)
+        
+        
 
 if __name__ == '__main__':
     print "Dialogue Game Description Language (DGDL)"
