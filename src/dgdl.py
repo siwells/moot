@@ -188,13 +188,27 @@ class Rule:
     """
     Defines a rule for the game.
 
-    A Rule is a set of conditions which, if satisfied, require an effect to be performed on the state of the game. Rules differ from interactions in that rules should be executed whenever their conditions are met whereas interactions are only executed if a player plays the move associated with that interaction
+    A Rule is a set of conditions which, if satisfied, require an effect to be performed on the state of the game. Rules differ from interactions in that rules should be executed whenever their conditions are met whereas interactions are only executed if a player plays the move associated with that interaction.
+    
+    A rules is composed from:
+        An identifier
+        A scope from {initial | turnwise | movewise}
+        A rule body
     """
-    def __init__(self, name):
+    def __init__(self, name, scope="movewise"):
         self.name = name
+        self.scope = scope
 
     def fragment(self):
-        return "{RULE"+self.name+"}"
+        fragments = []
+        opener = "{"
+        fragments.append(opener)
+        fragments.append(self.name)
+        fragments.append(", scope:")
+        fragments.append(self.scope)
+        closer = "}"
+        fragments.append(closer)
+        return ''.join(fragments)
 
 class Interaction:
     """
