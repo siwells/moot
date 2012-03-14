@@ -195,9 +195,10 @@ class Rule:
         A scope from {initial | turnwise | movewise}
         A rule body
     """
-    def __init__(self, name, scope="movewise"):
+    def __init__(self, name, scope="movewise", rulebody=None):
         self.name = name
         self.scope = scope
+        self.rulebody = rulebody
 
     def fragment(self):
         fragments = []
