@@ -12,9 +12,11 @@ if __name__ == '__main__':
     black_cstore = Store("cstore", "set", "public", black)
     rules = [ Rule( str(count) ) for count in xrange(1,6) ]
     comp = Composition(turns, part, [black, white], [white_cstore, black_cstore], roles)
-    game = Game("dgdl_simple", comp, rules)
+    moves = [Interaction("mv"+str(count), content = ["p","p","p","p"], opener="is it the case that") for count in xrange(1,6) ]
+    
+    game = Game("dgdl_simple", comp, rules, moves)
     print game.fragment()
     
     
-    mv1 = Interaction("mv1", content = ["p","p","p","p"], opener="is it the case that")
-    print mv1.fragment()
+#    for mv in moves:
+#        print mv.fragment()

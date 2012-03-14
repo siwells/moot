@@ -15,10 +15,11 @@ class Game:
     """
     A Game composed from a composition, zero or more rules, and at least one interaction
     """
-    def __init__(self, name, comp, rules=[]):
+    def __init__(self, name, comp, rules=[], moves=[]):
         self.name = name
         self.comp = comp
         self.rules = rules
+        self.moves = moves
 
     def fragment(self):
         fragments = []
@@ -28,6 +29,11 @@ class Game:
         if len(self.rules) != 0:
             fragments.append(", {")
             fragments.append(', '.join( rule.fragment() for rule in self.rules ))
+            fragments.append("}")
+        fragments.append("}")
+        if len(self.moves) != 0:
+            fragments.append(", {")
+            fragments.append(', '.join( move.fragment() for move in self.moves ))
             fragments.append("}")
         fragments.append("}")
         return ''.join(fragments)

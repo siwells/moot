@@ -14,11 +14,13 @@ class TestGameFunctions(unittest.TestCase):
         self.rules = [ Rule(str(count)) for count in xrange(1,6) ]
 
         self.comp = Composition(self.turns, self.part, [self.black, self.white], [self.white_cstore, self.black_cstore], self.roles)
-        self.game = Game("dgdl_simple", self.comp, self.rules)
+        self.moves = [Interaction("mv"+str(count), content = ["p","p","p","p"], opener="is it the case that") for count in xrange(1,6) ]
+
+        self.game = Game("dgdl_simple", self.comp, self.rules, self.moves)
 
     def test_fragment(self):
         out = self.game.fragment()
-        expected = "dgdl_simple{{turns, magnitude:12, ordering:strict}, {turns, magnitude:12, ordering:strict}, {players, min:2, max:undefined}, {player, id:black}, {player, id:white}, {store, id:cstore, owner:{white}, structure:set, visibility:public}, {store, id:cstore, owner:{black}, structure:set, visibility:public}, {{1, scope:movewise}, {2, scope:movewise}, {3, scope:movewise}, {4, scope:movewise}, {5, scope:movewise}}}"
+        expected = 'dgdl_simple{{turns, magnitude:12, ordering:strict}, {turns, magnitude:12, ordering:strict}, {players, min:2, max:undefined}, {player, id:black}, {player, id:white}, {store, id:cstore, owner:{white}, structure:set, visibility:public}, {store, id:cstore, owner:{black}, structure:set, visibility:public}, {{1, scope:movewise}, {2, scope:movewise}, {3, scope:movewise}, {4, scope:movewise}, {5, scope:movewise}}}, {{mv1, {p, p, p, p}, "is it the case that"}, {mv2, {p, p, p, p}, "is it the case that"}, {mv3, {p, p, p, p}, "is it the case that"}, {mv4, {p, p, p, p}, "is it the case that"}, {mv5, {p, p, p, p}, "is it the case that"}}}'
         self.assertEqual(out, expected)
 
 class TestRoleListFunctions(unittest.TestCase):
