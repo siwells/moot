@@ -18,7 +18,8 @@ class TestGameFunctions(unittest.TestCase):
 
     def test_fragment(self):
         out = self.game.fragment()
-        self.assertEqual(out, "dgdl_simple{{turns, magnitude:12, ordering:strict}, {turns, magnitude:12, ordering:strict}, {players, min:2, max:undefined}, {player, id:black}, {player, id:white}, {store, id:cstore, owner:{white}, structure:set, visibility:public}, {store, id:cstore, owner:{black}, structure:set, visibility:public}, {{RULE1}, {RULE2}, {RULE3}, {RULE4}, {RULE5}}}")
+        expected = "dgdl_simple{{turns, magnitude:12, ordering:strict}, {turns, magnitude:12, ordering:strict}, {players, min:2, max:undefined}, {player, id:black}, {player, id:white}, {store, id:cstore, owner:{white}, structure:set, visibility:public}, {store, id:cstore, owner:{black}, structure:set, visibility:public}, {{1, scope:movewise}, {2, scope:movewise}, {3, scope:movewise}, {4, scope:movewise}, {5, scope:movewise}}}"
+        self.assertEqual(out, expected)
 
 class TestRoleListFunctions(unittest.TestCase):
     def setUp(self):
