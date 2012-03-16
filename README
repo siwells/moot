@@ -3,7 +3,16 @@
 
 Whilst still in early development, & whilst there is not a lot of functionality, to run the code change to the project dir, i.e. the location of this README file then execute the following:
 
+Setup the VirtualEnv
+====================
+Decide where you want to store your virtualenv. I use a hidden (dotfile) alongside my project repo, so if moot is stored in the projects/moot then the virtualenv is in projects/.moot
 
+You can now create a virtualenv for moot using:
+
+    $ virtualenv --no-site-packages --distribute .moot && source .moot/bin/activate && pip install -r moot/requirements.txt
+
+Run the Code
+============
 To run the Test Suite:
 
     $ PYTHONPATH=`pwd`/src python test/test_dgdl.py
@@ -13,7 +22,18 @@ Currently there is only some setup & tear down code in main that instantiates so
 
     $ PYTHONPATH=`pwd`/src python src/main.py
 
+Even better, export the moot src dir onto your PYTHONPATH. Assuming that you are in the moot project root dir:
 
+    $ export PYTHONPATH=`pwd`/src
+
+You should now be able to execute:
+
+    $ python test/test_dgdl.py
+
+& see the output from the unittests.
+
+Documentation
+=============
 To build the documentation, first create the ReSt files from our Python source using sphinx-apidoc. In the root project directory:
 
     $ sphinx-apidoc -o docs/source src/
