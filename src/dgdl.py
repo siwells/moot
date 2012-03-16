@@ -295,6 +295,23 @@ class Effect:
         fragments.append(body)
         fragments.append("}")
         return ''.join(fragments)
+        
+class Condition:
+    """
+    Defines a state of the game
+    """
+    def __init__(self, name, *params):
+        self.name = name
+        self.params = list(params)
+    
+    def fragment(self):
+        fragments = []
+        fragments.append(str(self.name))
+        fragments.append("{")
+        body = ', '.join(self.params)
+        fragments.append(body)
+        fragments.append("}")
+        return ''.join(fragments)
 
 if __name__ == '__main__':
     print "Dialogue Game Description Language (DGDL)"

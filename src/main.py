@@ -21,5 +21,8 @@ if __name__ == '__main__':
 #    for mv in moves:
 #        print mv.fragment()
 
-    effect1 = Effect("update", "cstore", "black","p")
-    print effect1.fragment()
+    eff1 = Effect("update", "cstore", "black","p")
+    print eff1.fragment()
+    
+    con1 = Condition("event", "in", "p", "cstore", "speaker")
+    print con1.fragment()
