@@ -32,11 +32,12 @@ You should now be able to execute:
 
 & see the output from the unittests.
 
+
 Documentation
 =============
 To build the documentation, first create the ReSt files from our Python source using sphinx-apidoc. In the root project directory:
 
-    $ sphinx-apidoc -o docs/source src/
+    $ sphinx-apidoc -o docs/source/modules src/
 
 Now ask sphinx to build the HTML (or other output). In the docs directory:
     
