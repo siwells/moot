@@ -1,6 +1,24 @@
 from dgdl import *
 import unittest
 
+class TestConditionFunctions(unittest.TestCase):
+    def setUp(self):
+        self.condition = Condition("inspect", "in", "p", "cstore", "speaker")
+    
+    def test_fragment(self):
+        out = self.condition.fragment()
+        expected = "inspect{in, p, cstore, speaker}"
+        self.assertEqual(out, expected)
+
+class TestEffectFunctions(unittest.TestCase):
+    def setUp(self):
+        self.effect = Effect("update", "cstore", "black","p")
+    
+    def test_fragment(self):
+        out = self.effect.fragment()
+        expected = "update{cstore, black, p}"
+        self.assertEqual(out, expected)
+    
 class TestGameFunctions(unittest.TestCase):
     def setUp(self):
         self.turns = Turns(size=12)
@@ -23,6 +41,13 @@ class TestGameFunctions(unittest.TestCase):
         expected = 'dgdl_simple{{turns, magnitude:12, ordering:strict}, {turns, magnitude:12, ordering:strict}, {players, min:2, max:undefined}, {player, id:black}, {player, id:white}, {store, id:cstore, owner:{white}, structure:set, visibility:public}, {store, id:cstore, owner:{black}, structure:set, visibility:public}, {{1, scope:movewise}, {2, scope:movewise}, {3, scope:movewise}, {4, scope:movewise}, {5, scope:movewise}}}, {{mv1, {p, p, p, p}, "is it the case that"}, {mv2, {p, p, p, p}, "is it the case that"}, {mv3, {p, p, p, p}, "is it the case that"}, {mv4, {p, p, p, p}, "is it the case that"}, {mv5, {p, p, p, p}, "is it the case that"}}}'
         self.assertEqual(out, expected)
 
+class TestRegulationFunctions(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def test_fragment(self):
+        pass
+
 class TestRoleListFunctions(unittest.TestCase):
     def setUp(self):
         self.rl1 = RoleList()
@@ -38,13 +63,6 @@ class TestRoleListFunctions(unittest.TestCase):
 
         out = self.rl3.fragment()
         self.assertEqual(out, "{roles, {speaker, listener}}")
-
-class TestRegulationFunctions(unittest.TestCase):
-    def setUp(self):
-        pass
-
-    def test_fragment(self):
-        pass
 
 class TestTurnFunctions(unittest.TestCase):
     def setUp(self):
