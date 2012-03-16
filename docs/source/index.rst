@@ -3,15 +3,41 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to moot's documentation!
-================================
+The Moot Project Documentation
+==============================
 
-Contents:
+Moot is a set of tools for working with arguments and dialogue on the web.
+
+Visit the Project homepage:
+    * http://siwells.github.com/moot/
+
+To get the latest development version of moot:
+
+    * git clone git@github.com:siwells/moot.git
+    * git clone https://siwells@github.com/siwells/moot.git
+
+Getting into Moot
+=================
+
+
+Nothing to see here (yet)... just some placeholders... move along...
+
+    * Quick Start
+    * FAQ
+    * Release
+    * Blog
+    * Twitter
+    * Papers
+    
+Documentation
+=============
 
 .. toctree::
-    :glob: 
+    :maxdepth: 1
 
-    *
+    getting-started
+    module-docs
+
 
 Indices and tables
 ==================
