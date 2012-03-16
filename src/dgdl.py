@@ -253,7 +253,15 @@ class Interaction:
         fragments.append(closer)
         return ''.join(fragments)
         
-        
+class RuleBody:
+    """
+    Used to express the requirements for playing a move & effects of so doing
+    """
+    def __init__(self):
+        pass
+    
+    def fragment(self):
+        pass
 
 if __name__ == '__main__':
     print "Dialogue Game Description Language (DGDL)"
