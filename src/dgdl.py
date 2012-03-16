@@ -256,8 +256,12 @@ class Interaction:
 class Rule:
     """
     Used to express a condition & what should happen as a result of that condition pertaining
+    
+    A Rule consists of a set of conditions & a set of effects. If rule is in effect and the set of conditions is met then the effects must be applied.
     """
     def __init__(self):
+        self.conditions = []
+        self.effects = []
         pass
     
     def fragment(self):
