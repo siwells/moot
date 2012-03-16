@@ -1,7 +1,7 @@
 from dgdl import *
 
 if __name__ == '__main__':
-    print "DGDL"
+#    print "DGDL"
     
     turns = Turns(size=12)
     roles = RoleList()
@@ -15,8 +15,11 @@ if __name__ == '__main__':
     moves = [Interaction("mv"+str(count), content = ["p","p","p","p"], opener="is it the case that") for count in xrange(1,6) ]
     
     game = Game("dgdl_simple", comp, rules, moves)
-    print game.fragment()
+ #   print game.fragment()
     
     
 #    for mv in moves:
 #        print mv.fragment()
+
+    effect1 = Effect("update", "cstore", "black","p")
+    print effect1.fragment()
