@@ -35,10 +35,15 @@ You should now be able to execute:
 
 Documentation
 =============
-To build the documentation, first create the ReSt files from our Python source using sphinx-apidoc. In the root project directory:
+The latest version of the documentation is built and stored at
+    http://moot.readthedocs.org
+
+If you want to build the documentation yourself, first we must ensure that we have the latest ReSt files built from our Python source using sphinx-apidoc. In the project's root directory:
 
     $ sphinx-apidoc -o docs/source/modules src/
 
-Now ask sphinx to build the HTML (or other output). In the docs directory:
+Now ask sphinx to build the HTML (or other output format). In the docs directory, execute:
     
     $ make html
+    
+Your should now be able to find your documentation in the docs/build/html directory
