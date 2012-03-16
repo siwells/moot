@@ -13,12 +13,12 @@ class System:
 
 class Game:
     """
-    A Game composed from a composition, zero or more rules, and at least one interaction
+    A Game composed from a composition, zero or more regulations, and at least one interaction
     """
-    def __init__(self, name, comp, rules=[], moves=[]):
+    def __init__(self, name, comp, regulations=[], moves=[]):
         self.name = name
         self.comp = comp
-        self.rules = rules
+        self.regulations = regulations
         self.moves = moves
 
     def fragment(self):
@@ -26,9 +26,9 @@ class Game:
         fragments.append(self.name)
         fragments.append("{")
         fragments.append(self.comp.fragment())
-        if len(self.rules) != 0:
+        if len(self.regulations) != 0:
             fragments.append(", {")
-            fragments.append(', '.join( rule.fragment() for rule in self.rules ))
+            fragments.append(', '.join( reg.fragment() for reg in self.regulations ))
             fragments.append("}")
         fragments.append("}")
         if len(self.moves) != 0:
@@ -190,21 +190,21 @@ class Player:
         fragments.append(closer)
         return ''.join(fragments)
 
-class Rule:
+class Regulation:
     """
-    Defines a rule for the game.
+    Defines a regulation associated with playing the game.
 
-    A Rule is a set of conditions which, if satisfied, require an effect to be performed on the state of the game. Rules differ from interactions in that rules should be executed whenever their conditions are met whereas interactions are only executed if a player plays the move associated with that interaction.
+    A Regulation is a set of conditions which, if satisfied, require an effect to be performed on the state of the game. Regulations differ from interactions in that regulations should be executed whenever their conditions are met whereas interactions are only executed if a player plays the move associated with that interaction.
     
-    A rules is composed from:
+    A regulation is composed from:
         An identifier
         A scope from {initial | turnwise | movewise}
-        A rule body
+        A rule
     """
-    def __init__(self, name, scope="movewise", rulebody=None):
+    def __init__(self, name, scope="movewise", rule=None):
         self.name = name
         self.scope = scope
-        self.rulebody = rulebody
+        self.rule = rule
 
     def fragment(self):
         fragments = []
@@ -228,14 +228,14 @@ class Interaction:
         Content - The "propositional" content of the move, e.g. 'p', 'q', 'r', &c.
         NB. Such that identifier(content)  constitutes a basic speech act descriptor
         Opener [OPTIONAL] - A string that can be prepended to the speech act, e.g. "Is it the case that..."
-        Rulebody - A set of requirements & effects that define when a move can be played & the effect of doing so.
+        Rule - A set of requirements & effects that define when a move can be played & the effect of doing so.
 
     """
-    def __init__(self, name, content=[], opener=None, rulebody=None):
+    def __init__(self, name, content=[], opener=None, rule=None):
         self.name = name
         self.content = content
         self.opener = opener
-        self.rulebody = rulebody
+        self.rule = rule
         
     def fragment(self):
         fragments = []
@@ -253,9 +253,9 @@ class Interaction:
         fragments.append(closer)
         return ''.join(fragments)
         
-class RuleBody:
+class Rule:
     """
-    Used to express the requirements for playing a move & effects of so doing
+    Used to express a condition & what should happen as a result of that condition pertaining
     """
     def __init__(self):
         pass

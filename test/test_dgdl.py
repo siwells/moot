@@ -11,12 +11,12 @@ class TestGameFunctions(unittest.TestCase):
         self.black = Player("black")
         self.black_cstore = Store("cstore", "set", "public", self.black)
 
-        self.rules = [ Rule(str(count)) for count in xrange(1,6) ]
+        self.regulations = [ Regulation(str(count)) for count in xrange(1,6) ]
 
         self.comp = Composition(self.turns, self.part, [self.black, self.white], [self.white_cstore, self.black_cstore], self.roles)
         self.moves = [Interaction("mv"+str(count), content = ["p","p","p","p"], opener="is it the case that") for count in xrange(1,6) ]
 
-        self.game = Game("dgdl_simple", self.comp, self.rules, self.moves)
+        self.game = Game("dgdl_simple", self.comp, self.regulations, self.moves)
 
     def test_fragment(self):
         out = self.game.fragment()
@@ -39,7 +39,7 @@ class TestRoleListFunctions(unittest.TestCase):
         out = self.rl3.fragment()
         self.assertEqual(out, "{roles, {speaker, listener}}")
 
-class TestRuleFunctions(unittest.TestCase):
+class TestRegulationFunctions(unittest.TestCase):
     def setUp(self):
         pass
 
