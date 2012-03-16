@@ -226,9 +226,10 @@ class Interaction:
     Moves are composed from:
         An identifer - The UID for the move
         Content - The "propositional" content of the move, e.g. 'p', 'q', 'r', &c.
-            NB. Such that identifier(content)  constitutes a basic speech act descriptor
+        NB. Such that identifier(content)  constitutes a basic speech act descriptor
         Opener [OPTIONAL] - A string that can be prepended to the speech act, e.g. "Is it the case that..."
         Rulebody - A set of requirements & effects that define when a move can be played & the effect of doing so.
+
     """
     def __init__(self, name, content=[], opener=None, rulebody=None):
         self.name = name
