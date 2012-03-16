@@ -253,6 +253,18 @@ class Interaction:
         fragments.append(closer)
         return ''.join(fragments)
         
+class Rules:
+    """
+    A set of Rule objects
+    
+    An individual Regulation or Interaction could encompass multiple sets of rules, enabling the resultant effect to differ dependent upon the circumstances in which they occur.
+    """
+    def __init__(self):
+        pass
+        
+    def fragment(self):
+        pass
+        
 class Rule:
     """
     Used to express a condition & what should happen as a result of that condition pertaining
