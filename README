@@ -12,3 +12,12 @@ To run the Test Suite:
 Currently there is only some setup & tear down code in main that instantiates some of the basic DGDL classes, at least until the CLI has been implemented. To run the "in development" application:
 
     $ PYTHONPATH=`pwd`/src python src/main.py
+
+
+To build the documentation, first create the ReSt files from our Python source using sphinx-apidoc. In the root project directory:
+
+    $ sphinx-apidoc -o docs/source src/
+
+Now ask sphinx to build the HTML (or other output). In the docs directory:
+    
+    $ make html
