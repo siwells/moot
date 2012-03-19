@@ -201,10 +201,10 @@ class Regulation:
         A scope from {initial | turnwise | movewise}
         A rule
     """
-    def __init__(self, name, scope="movewise", rule=None):
+    def __init__(self, name, scope="movewise", rules=None):
         self.name = name
         self.scope = scope
-        self.rule = rule
+        self.rules = rules
 
     def fragment(self):
         fragments = []
@@ -231,11 +231,11 @@ class Interaction:
         Rule - A set of requirements & effects that define when a move can be played & the effect of doing so.
 
     """
-    def __init__(self, name, content=[], opener=None, rule=None):
+    def __init__(self, name, content=[], opener=None, rules=None):
         self.name = name
         self.content = content
         self.opener = opener
-        self.rule = rule
+        self.rules = rules
         
     def fragment(self):
         fragments = []
@@ -257,7 +257,7 @@ class Rules:
     """
     A set of Rule objects
     
-    An individual Regulation or Interaction could encompass multiple sets of rules, enabling the resultant effect to differ dependent upon the circumstances in which they occur.
+    An individual Regulation or Interaction could encompass multiple sets of rules, enabling the resultant effect to differ dependent upon the circumstances in which they occur, i.e. if a & b then x else if c then y else z
     """
     def __init__(self):
         pass
