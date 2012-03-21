@@ -26,3 +26,6 @@ if __name__ == '__main__':
     
     con1 = Condition("inspect", "in", "p", "cstore", "speaker")
     print con1.fragment()
+    
+    rl1 = Rule(conditions=[con1], effects=[eff1])
+    print  rl1.fragment()

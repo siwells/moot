@@ -271,13 +271,43 @@ class Rule:
     
     A Rule consists of a set of conditions & a set of effects. If the rule is in effect and the set of conditions is met then the effects must be applied.
     """
-    def __init__(self):
-        self.conditions = []
-        self.effects = []
-        pass
+    def __init__(self, conditions=[], effects=[]):    
+        self.conditions = conditions
+        self.effects = effects
     
     def fragment(self):
-        pass
+        fragments = []
+
+        if len(self.conditions) and len(self.effects) != 0:
+            fragments.append("{")
+            fragments.append("if ")
+            fragments.append(self.condition_fragment())
+            fragments.append(" then ")
+            fragments.append(self.effects_fragment())
+            fragments.append("}")
+            return ''.join(fragments)
+
+        elif len(self.conditions) == 0  and len(self.effects) != 0:
+            fragments.append("{")
+            fragments.append(self.effects_fragment())
+            fragments.append("}")
+            return ''.join(fragments)
+            
+        else:
+            return ''.join(fragments)
+    
+    def condition_fragment(self):
+        fragments = []
+        cond = ', '.join(condition.fragment() for condition in self.conditions)
+        fragments.append(cond)
+        return ''.join(fragments)
+    
+    def effects_fragment(self):
+        fragments = []
+        eff = ', '.join(effect.fragment() for effect in self.effects)
+        fragments.append(eff)
+        return ''.join(fragments)
+        
         
 class Effect:
     """
