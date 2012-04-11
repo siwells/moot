@@ -30,7 +30,6 @@ class Game:
             fragments.append(", {")
             fragments.append(', '.join( reg.fragment() for reg in self.regulations ))
             fragments.append("}")
-        fragments.append("}")
         if len(self.moves) != 0:
             fragments.append(", {")
             fragments.append(', '.join( move.fragment() for move in self.moves ))
