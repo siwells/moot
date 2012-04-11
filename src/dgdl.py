@@ -297,13 +297,13 @@ class Rule:
     
     def condition_fragment(self):
         fragments = []
-        cond = ', '.join(condition.fragment() for condition in self.conditions)
+        cond = ' and '.join(condition.fragment() for condition in self.conditions)
         fragments.append(cond)
         return ''.join(fragments)
     
     def effects_fragment(self):
         fragments = []
-        eff = ', '.join(effect.fragment() for effect in self.effects)
+        eff = ' and '.join(effect.fragment() for effect in self.effects)
         fragments.append(eff)
         return ''.join(fragments)
         
