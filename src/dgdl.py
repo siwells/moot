@@ -256,7 +256,7 @@ class Rules:
     """
     A set of Rule objects
     
-    An individual Regulation or Interaction could encompass multiple sets of rules, enabling the resultant effect to differ dependent upon the circumstances in which they occur, i.e. if a & b then x else if c then y else z
+    An individual Regulation or Interaction could encompass multiple alternative sets of rules, enabling the resultant effect to differ dependent upon the circumstances in which they occur, i.e. if a & b then x else if c then y else z
     """
     def __init__(self):
         pass
