@@ -256,13 +256,21 @@ class Rules:
     """
     A set of Rule objects
     
-    An individual Regulation or Interaction could encompass multiple alternative sets of rules, enabling the resultant effect to differ dependent upon the circumstances in which they occur, i.e. if a & b then x else if c then y else z
+    An individual Regulation or Interaction could encompass multiple alternative sets of rules, enabling the resultant effect to differ dependent upon the circumstances in which they occur, i.e. if a then x else if b and c then y.
+    
+    Well formedness: (1) the last Rule block in the Rules list can contain only effects. This gives a catch all set of effects to apply if none of the conditional elements of the Rules are satisfied and has the general form "if a then x else if b and c then y else z"; (2) The first Rule block in the Rules list can also contain only a single set of effects with no conditions. In this case we are specifying a set of mandatory effects that must be applied to the game state if this move is played regardless of whether there are any subsequent conditionals. NB. Subsequent conditionals may undo the effects of this block because of the linear manner in which effects are applied. Rules of this type have the general form "x and if b then c".
     """
-    def __init__(self):
-        pass
+    def __init__(self, rules=[]):
+        self.rules = rules
         
     def fragment(self):
-        pass
+        fragments = []
+        opener = "{"
+        fragments.append(opener)
+        fragments.append(' else '.join( rule.fragment() for rule in self.rules))
+        closer = "}"
+        fragments.append(closer)
+        return ''.join(fragments)
         
 class Rule:
     """
@@ -278,12 +286,12 @@ class Rule:
         fragments = []
 
         if len(self.conditions) and len(self.effects) != 0:
-            fragments.append("{")
+#            fragments.append("{")
             fragments.append("if ")
             fragments.append(self.condition_fragment())
             fragments.append(" then ")
             fragments.append(self.effects_fragment())
-            fragments.append("}")
+#            fragments.append("}")
             return ''.join(fragments)
 
         elif len(self.conditions) == 0  and len(self.effects) != 0:
