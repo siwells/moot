@@ -262,12 +262,20 @@ class Rules:
     """
     def __init__(self, rules=[]):
         self.rules = rules
+        if len(rules[0].conditions) == 0:
+            self.catchall = True
+        else:
+            self.catchall = False
         
     def fragment(self):
+
         fragments = []
         opener = "{"
         fragments.append(opener)
-        fragments.append(' else '.join( rule.fragment() for rule in self.rules))
+        if self.catchall:
+            fragments.append(' and '.join( rule.fragment() for rule in self.rules))
+        else:
+            fragments.append(' else '.join( rule.fragment() for rule in self.rules))
         closer = "}"
         fragments.append(closer)
         return ''.join(fragments)
@@ -286,18 +294,14 @@ class Rule:
         fragments = []
 
         if len(self.conditions) and len(self.effects) != 0:
-#            fragments.append("{")
             fragments.append("if ")
             fragments.append(self.condition_fragment())
             fragments.append(" then ")
             fragments.append(self.effects_fragment())
-#            fragments.append("}")
             return ''.join(fragments)
 
         elif len(self.conditions) == 0  and len(self.effects) != 0:
-            fragments.append("{")
             fragments.append(self.effects_fragment())
-            fragments.append("}")
             return ''.join(fragments)
             
         else:
@@ -314,7 +318,6 @@ class Rule:
         eff = ' and '.join(effect.fragment() for effect in self.effects)
         fragments.append(eff)
         return ''.join(fragments)
-        
         
 class Effect:
     """
