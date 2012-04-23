@@ -39,7 +39,7 @@ class Game:
 
 class Composition:
     """
-    A Composition defines the components of the game such as the board and pieces
+    A Composition defines the pieces of the game such as the board, participants, roles and tokens
     """
     def __init__(self, turns, participants, players=[], stores=[], rolelist=None):
         self.turns = turns
