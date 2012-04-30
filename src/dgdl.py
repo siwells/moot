@@ -200,10 +200,10 @@ class Regulation:
         A scope from {initial | turnwise | movewise}
         A rule
     """
-    def __init__(self, name, scope="movewise", rules=None):
+    def __init__(self, name, scope="movewise", rule_expr=None):
         self.name = name
         self.scope = scope
-        self.rules = rules
+        self.rule_expr = rule_expr
 
     def fragment(self):
         fragments = []
@@ -212,6 +212,9 @@ class Regulation:
         fragments.append(self.name)
         fragments.append(", scope:")
         fragments.append(self.scope)
+        if self.rule_expr is not None:
+            fragments.append(", ")
+            fragments.append(self.rule_expr.fragment())
         closer = "}"
         fragments.append(closer)
         return ''.join(fragments)
@@ -230,11 +233,11 @@ class Interaction:
         Rule - A set of requirements & effects that define when a move can be played & the effect of doing so.
 
     """
-    def __init__(self, name, content=[], opener=None, rules=None):
+    def __init__(self, name, content=[], opener=None, rule_expr=None):
         self.name = name
         self.content = content
         self.opener = opener
-        self.rules = rules
+        self.rule_expr = rule_expr
         
     def fragment(self):
         fragments = []
@@ -249,20 +252,22 @@ class Interaction:
             fragments.append(", \"")
             fragments.append(self.opener)
             fragments.append("\"")
+            
+        #TODO: ADD RULE_EXPR
         fragments.append(closer)
         return ''.join(fragments)
         
-class Rules:
+class RuleExpr:
     """
-    A set of Rule objects
+    An expression made from Rule objects
     
     An individual Regulation or Interaction could encompass multiple alternative sets of rules, enabling the resultant effect to differ dependent upon the circumstances in which they occur, i.e. if a then x else if b and c then y.
     
-    Well formedness: (1) the last Rule block in the Rules list can contain only effects. This gives a catch all set of effects to apply if none of the conditional elements of the Rules are satisfied and has the general form "if a then x else if b and c then y else z"; (2) The first Rule block in the Rules list can also contain only a single set of effects with no conditions. In this case we are specifying a set of mandatory effects that must be applied to the game state if this move is played regardless of whether there are any subsequent conditionals. NB. Subsequent conditionals may undo the effects of this block because of the linear manner in which effects are applied. Rules of this type have the general form "x and if b then c".
+    Well formedness: (1) the last Rule block in the Rules list can optionally contain only effects. This gives a catch all set of effects to apply if none of the conditional elements of the Rules are satisfied and has the general form "if a then x else if b and c then y else z"; (2) The first Rule block in the Rules list can also contain only a single set of effects with no conditions. In this case we are specifying a set of mandatory effects that must be applied to the game state if this move is played regardless of whether there are any subsequent conditionals. NB. Subsequent conditionals may undo the effects of this block because of the linear manner in which effects are applied. Rules of this type have the general form "x and if b then c".
     """
-    def __init__(self, rules=[]):
-        self.rules = rules
-        if len(rules[0].conditions) == 0:
+    def __init__(self, rule_expr=[]):
+        self.rule_expr = rule_expr
+        if len(rule_expr[0].conditions) == 0:
             self.catchall = True
         else:
             self.catchall = False
@@ -273,9 +278,9 @@ class Rules:
         opener = "{"
         fragments.append(opener)
         if self.catchall:
-            fragments.append(' and '.join( rule.fragment() for rule in self.rules))
+            fragments.append(' and '.join( rule.fragment() for rule in self.rule_expr))
         else:
-            fragments.append(' else '.join( rule.fragment() for rule in self.rules))
+            fragments.append(' else '.join( rule.fragment() for rule in self.rule_expr))
         closer = "}"
         fragments.append(closer)
         return ''.join(fragments)
