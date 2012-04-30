@@ -252,8 +252,9 @@ class Interaction:
             fragments.append(", \"")
             fragments.append(self.opener)
             fragments.append("\"")
-            
-        #TODO: ADD RULE_EXPR
+        if self.rule_expr is not None:
+            fragments.append(", ")
+            fragments.append(self.rule_expr.fragment())
         fragments.append(closer)
         return ''.join(fragments)
         
