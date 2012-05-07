@@ -82,7 +82,7 @@ class Turns:
 
     def fragment(self):
         fragments = []
-        opener = "{turns, magnitude:"
+        opener = "turns:{ magnitude:"
         fragments.append(opener)
         fragments.append(str(self.size))
         fragments.append(", ordering:")
