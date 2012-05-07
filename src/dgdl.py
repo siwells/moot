@@ -178,7 +178,7 @@ class Player:
 
     def fragment(self):
         fragments = []
-        opener = "{player, id:"
+        opener = "player:{ id:"
         fragments.append(opener)
         fragments.append(self.name)
         if len(self.roles) != 0:
