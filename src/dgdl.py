@@ -208,8 +208,9 @@ class Regulation:
 
     def fragment(self):
         fragments = []
-        opener = "{"
+        opener = "rule:{"
         fragments.append(opener)
+        fragments.append("id:")
         fragments.append(self.name)
         fragments.append(", scope:")
         fragments.append(self.scope)
