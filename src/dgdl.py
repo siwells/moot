@@ -23,8 +23,9 @@ class Game:
 
     def fragment(self):
         fragments = []
+        fragments.append("game:{ id:")
         fragments.append(self.name)
-        fragments.append("{")
+        fragments.append(", ")
         fragments.append(self.comp.fragment())
         if len(self.regulations) != 0:
             fragments.append(", {")
