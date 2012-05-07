@@ -243,15 +243,16 @@ class Interaction:
         
     def fragment(self):
         fragments = []
-        opener = "{"
+        opener = "move:{"
         fragments.append(opener)
+        fragments.append("id:")
         fragments.append(self.name)
-        fragments.append(", {")
+        fragments.append(", content:{")
         fragments.append(', '.join( element for element in self.content ))
         fragments.append("}")
         closer = "}"
         if self.opener is not None:
-            fragments.append(", \"")
+            fragments.append(", opener:\"")
             fragments.append(self.opener)
             fragments.append("\"")
         if self.rule_expr is not None:
