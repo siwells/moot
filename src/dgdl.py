@@ -23,16 +23,16 @@ class Game:
 
     def fragment(self):
         fragments = []
-        fragments.append("game:{ id:")
+        fragments.append("game:{id:")
         fragments.append(self.name)
         fragments.append(", ")
         fragments.append(self.comp.fragment())
         if len(self.regulations) != 0:
-            fragments.append(", {")
+            fragments.append(", rules:{")
             fragments.append(', '.join( reg.fragment() for reg in self.regulations ))
             fragments.append("}")
         if len(self.moves) != 0:
-            fragments.append(", {")
+            fragments.append(", moves:{")
             fragments.append(', '.join( move.fragment() for move in self.moves ))
             fragments.append("}")
         fragments.append("}")
@@ -82,7 +82,7 @@ class Turns:
 
     def fragment(self):
         fragments = []
-        opener = "turns:{ magnitude:"
+        opener = "turns:{magnitude:"
         fragments.append(opener)
         fragments.append(str(self.size))
         fragments.append(", ordering:")
@@ -113,7 +113,7 @@ class Store:
 
     def fragment(self):
         fragments = []
-        opener = "store:{ id:"
+        opener = "store:{id:"
         fragments.append(opener)
         fragments.append(str(self.name))
         fragments.append(", owner:{")
@@ -156,7 +156,7 @@ class Participants:
 
     def fragment(self):
         fragments = []
-        opener = "players:{ min:"
+        opener = "players:{min:"
         fragments.append(opener)
         fragments.append(str(self.min))
         fragments.append(", max:")
@@ -178,7 +178,7 @@ class Player:
 
     def fragment(self):
         fragments = []
-        opener = "player:{ id:"
+        opener = "player:{id:"
         fragments.append(opener)
         fragments.append(self.name)
         if len(self.roles) != 0:
