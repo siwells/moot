@@ -1,5 +1,12 @@
 import exceptions
 
+class DescriptionFactory:
+    """
+    This factory creates either complete DGDLDescription objects or scaffolds rudimentary objects
+    """
+    def __init__(self):
+        pass
+
 class DGDLDescription:
     """
     A class that represents a DGDL description
@@ -17,6 +24,20 @@ class System:
 
     def add_game(self, game):
         self.games.append(game)
+    
+    def fragment(self):
+        fragments = []
+        fragments.append("system:{id:")
+        fragments.append(self.name)
+        
+        fragments.append(', '.join(game.fragment() for game in self.games))
+
+        fragments.append("}")
+        return ''.join(fragments)
+    
+    def print_system(self):
+        print self.fragment()
+        
 
 class Game:
     """
