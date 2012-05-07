@@ -6,13 +6,18 @@ class DescriptionFactory:
     """
     def __init__(self):
         pass
+        
+    def scaffold(self):
+        pass
 
 class DGDLDescription:
     """
     A class that represents a DGDL description
     """
-    def __init__(self):
-        pass
+    def __init__(self, system):
+        self.system = system
+    
+    
 
 class System:
     """

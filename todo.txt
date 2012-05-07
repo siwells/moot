@@ -1,0 +1,49 @@
+* A keyword is followed by a colon, e.g. game: or rule:
+* If there is more than one value following a key(word) then curly brackets are used to denote scope
+* Each game has a list of labels that are valid descriptors used in the specification of the game. 
+* Add functionality to retrieve the list of labels from the description
+* What is the relation between labels and tokens?
+* Scoping of labels and tokens between games in a system?
+* well-formedness of game descriptions
+* remove commas?
+* how to represent tokens, locutions, and arguments?
+* SYMBOLS IN STRINGS
+* UNIT TESTS - start with basic classes and work way up until we have much better coverage
+* TEST EBNF AGAINST ANTLR NB. Ensure it is a valid ANTLR Grammar
+
+
+
+dgdl_simple{
+    {turns, magnitude:12, ordering:strict}, 
+    {turns, magnitude:12, ordering:strict}, 
+    {players, min:2, max:undefined}, 
+    {player, id:black}, 
+    {player, id:white}, 
+    {store, id:cstore, owner:{white}, structure:set, visibility:public}, 
+    {store, id:cstore, owner:{black}, structure:set, visibility:public}, 
+    {
+        {1, scope:movewise}, 
+        {2, scope:movewise}, 
+        {3, scope:movewise}, 
+        {4, scope:movewise}, 
+        {5, scope:movewise}
+    }, 
+    {
+        {mv1, {p, p, p, p}, "is it the case that"}, 
+        {mv2, {p, p, p, p}, "is it the case that"}, 
+        {mv3, {p, p, p, p}, "is it the case that"}, 
+        {mv4, {p, p, p, p}, "is it the case that"}, 
+        {mv5, {p, p, p, p}, "is it the case that", 
+            {
+                if 
+                    inspect{in, p, cstore, speaker} 
+                then 
+                    update{remove, cstore, black, p}
+                else if 
+                    inspect{not_in, p, cstore, speaker} 
+                then 
+                    update{add, cstore, black, p}
+            }
+        }
+    }
+}

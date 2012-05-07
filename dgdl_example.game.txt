@@ -1,0 +1,47 @@
+game:
+{
+    id:dgdl_simple
+    turns:{ magnitude:12, ordering:strict },
+    players:{ min:2, max:undefined },
+    player:{ id:black }, 
+    player:{ id:white }, 
+    store:{ id:cstore, owner:{white}, structure:set, visibility:public }, 
+    store:{ id:cstore, owner:{black}, structure:set, visibility:public }, 
+    rules: 
+    {
+        rule:
+        {
+            id:1,
+            scope:movewise,
+            body:
+            {
+                if inspect{in, p, cstore, speaker} then update{cstore, black, p} 
+                else if inspect{in, p, cstore, speaker} then update{cstore, black, p}
+            }
+        }, 
+        rule:{ id:2, scope:movewise }, 
+        rule:{ id:3, scope:movewise }, 
+        rule:{ id:4, scope:movewise }, 
+        rule:{ id:5, scope:movewise }
+    }, 
+    moves: 
+    {
+        move:{ id:assert, content:{p, p, p, p}, opener:"is it the case that" }, 
+        move:{ id:challenge, content:{p, p, p, p}, "is it the case that" }, 
+        move:{ id:defend, content:{p, p, p, p}, "is it the case that" }, 
+        move:{ id:concede, content:{p, p, p, p}, "is it the case that" }, 
+        move:{ id:question, content:{p, p, p, p}, "is it the case that" }
+        
+        move:
+        { 
+            id:ASSERT, 
+            content:{p, q, r}, 
+            opener:"It is the case that", 
+            body:
+            {
+                if inspect{in, p, cstore, speaker} then update{cstore, black, p} 
+                else if inspect{in, p, cstore, speaker} then update{cstore, black, p}
+            }
+        }
+    }
+}
