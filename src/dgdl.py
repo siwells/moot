@@ -113,7 +113,7 @@ class Store:
 
     def fragment(self):
         fragments = []
-        opener = "{store, id:"
+        opener = "store:{ id:"
         fragments.append(opener)
         fragments.append(str(self.name))
         fragments.append(", owner:{")
