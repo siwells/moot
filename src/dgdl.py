@@ -279,7 +279,7 @@ class RuleExpr:
     def fragment(self):
 
         fragments = []
-        opener = "{"
+        opener = "body:{"
         fragments.append(opener)
         if self.catchall:
             fragments.append(' and '.join( rule.fragment() for rule in self.rule_expr))
