@@ -1,5 +1,12 @@
 import exceptions
 
+class DGDLDescription:
+    """
+    A class that represents a DGDL description
+    """
+    def __init__(self):
+        pass
+
 class System:
     """
     A Dialogue System composed from one or more games
