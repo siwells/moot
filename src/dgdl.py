@@ -156,7 +156,7 @@ class Participants:
 
     def fragment(self):
         fragments = []
-        opener = "{players, min:"
+        opener = "players:{ min:"
         fragments.append(opener)
         fragments.append(str(self.min))
         fragments.append(", max:")
