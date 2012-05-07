@@ -2,7 +2,7 @@ import exceptions
 
 class DescriptionFactory:
     """
-    This factory creates either complete DGDLDescription objects or scaffolds rudimentary objects
+    This factory [1] creates complete DGDLDescription objects from supplied descriptions, [2] scaffolds minimal game or system objects, and [3] generates standard games such as DC
     """
     def __init__(self):
         pass
