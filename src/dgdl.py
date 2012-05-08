@@ -27,13 +27,13 @@ class DGDLDescription:
     def describe(self):
         return self.description.fragment()
     
-    def list_labels():
+    def list_labels(self):
         pass
     
-    def list_moves():
+    def list_moves(self):
         pass
     
-    def list_rules():
+    def list_rules(self):
         pass
     
 
