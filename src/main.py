@@ -2,7 +2,7 @@ from dgdl import *
 
 if __name__ == '__main__':
 #    print "DGDL"
-
+    """
     turns = Turns(size=12)
 #    roles = RoleList()
     part = Participants()
@@ -20,7 +20,7 @@ if __name__ == '__main__':
     
     game = Game("dgdl_simple", comp, regulations, moves)
 #    print game.fragment()
-
+    """
     
 #    for mv in moves:
 #        print mv.fragment()
@@ -46,8 +46,12 @@ if __name__ == '__main__':
     int1 = Interaction("ASSERT", ["p","q","r"], "It is the case that", rls1)
     print int1.fragment()
     """
-    
+    """
     system = System("TESTSYS")
     system.add_game(game)
     system.add_game(game)
-    system.print_system()
+#    system.print_system()
+    """
+    df = DescriptionFactory()
+    desc = df.scaffold()
+    print desc.description.fragment()
