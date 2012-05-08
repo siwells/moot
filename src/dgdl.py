@@ -8,10 +8,15 @@ class DescriptionFactory:
         pass
 
     def scaffold(self):
-
-        test_desc = DGDLDescription("HELLO")
+        turns = Turns()
+        part = Participants()
+        white = Player("white")
+        comp = Composition(turns, part, [white], [])
+        moves = [Interaction("statement", content = ["p"])]
+        game = Game("dgdl_simple", comp, [], moves)
+        test_desc = DGDLDescription(game)
         return test_desc
-
+        
 class DGDLDescription:
     """
     A class that represents a DGDL description. A DGDL description stores either a game or a system of games and is defined at creation when an object is passed in.
@@ -193,7 +198,7 @@ class Participants:
     """
     Defines the minimum & maximum numbers of participants
     """
-    def __init__(self, min=2, max=None):
+    def __init__(self, min=1, max=None):
         self.min = min
         self.max = max
 
