@@ -7,7 +7,7 @@ class DescriptionFactory:
     def __init__(self):
         pass
 
-    def scaffold(self):
+    def minimal(self):
         turns = Turns()
         part = Participants()
         white = Player("white")
@@ -16,6 +16,9 @@ class DescriptionFactory:
         game = Game("dgdl_simple", comp, [], moves)
         test_desc = DGDLDescription(game)
         return test_desc
+        
+    def scaffold(self):
+        pass
         
 class DGDLDescription:
     """
