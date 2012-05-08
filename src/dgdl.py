@@ -6,17 +6,27 @@ class DescriptionFactory:
     """
     def __init__(self):
         pass
-        
+
     def scaffold(self):
-        pass
+
+        test_desc = DGDLDescription("HELLO")
+        return test_desc
 
 class DGDLDescription:
     """
-    A class that represents a DGDL description
+    A class that represents a DGDL description. A DGDL description stores either a game or a system of games and is defined at creation when an object is passed in.
     """
-    def __init__(self, system):
-        self.system = system
+    def __init__(self, description):
+        self.description = description
     
+    def list_labels():
+        pass
+    
+    def list_moves():
+        pass
+    
+    def list_rules():
+        pass
     
 
 class System:
