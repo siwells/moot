@@ -68,10 +68,6 @@ class System:
 
         fragments.append("}")
         return ''.join(fragments)
-    
-    def print_system(self):
-        print self.fragment()
-        
 
 class Game:
     """
