@@ -39,11 +39,26 @@ class DGDLDescription:
     
     def describe(self):
         return self.description.fragment()
+        
+    def list_conditions(self):
+        pass
+
+    def list_effects(self):
+        pass
     
+    """
+    Labels includes tokens & ids used in the game description
+    """
     def list_labels(self):
         pass
     
     def list_moves(self):
+        pass
+
+    def list_params(self):
+        pass
+    
+    def list_players(self):
         pass
     
     def list_rules(self):
