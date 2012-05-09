@@ -17,8 +17,16 @@ class DescriptionFactory:
         test_desc = DGDLDescription(game)
         return test_desc
         
-    def scaffold(self):
-        pass
+    def scaffold(self, gameid, magnitude="single", ordering="strict", players=["white", "black"]):
+        turns = Turns(magnitude, ordering)
+        part = Participants(len(players), len(players))
+        player_list = []
+        for name in players:
+            player_list.append( Player(name) )
+        comp = Composition(turns, part, player_list)
+        game = Game(gameid, comp, [], [])
+        desc = DGDLDescription(game)
+        return desc
         
 class DGDLDescription:
     """
