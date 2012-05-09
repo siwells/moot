@@ -53,5 +53,5 @@ if __name__ == '__main__':
 #    system.print_system()
     """
     df = DescriptionFactory()
-    desc = df.scaffold()
-    print desc.description.fragment()
+    desc = df.scaffold("GAME1", "single", "strict", ["white", "black"])
+    print desc.describe()
