@@ -1,6 +1,6 @@
 * In DescriptionFactory() allow EBNF description to be passed in and an instantiated description object to be returned
 * Methods required by Game class: add_rule(), add_move()
-* pretty() in DGDLDescript class - return formatted string
+* pretty() [return formatted string] & validate() [ensure syntactic correctness] in DGDLDescript class
 * Each game has a list of labels that are valid descriptors used in the specification of the game. 
 * Add functionality to retrieve the list of labels from the description
 * What is the relation between labels and tokens?
