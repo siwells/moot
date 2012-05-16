@@ -85,7 +85,7 @@ class System:
         fragments = []
         fragments.append("system:{id:")
         fragments.append(self.name)
-        
+        fragments.append(',')
         fragments.append(', '.join(game.fragment() for game in self.games))
 
         fragments.append("}")
