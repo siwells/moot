@@ -94,12 +94,12 @@ class System:
 
 class Game:
     """
-    A Game composed from a composition, zero or more regulations, and at least one interaction
+    A Game composed from a composition, zero or more rules, and at least one interaction
     """
-    def __init__(self, name, comp, regulations=[], moves=[]):
+    def __init__(self, name, comp, rules=[], moves=[]):
         self.name = name
         self.comp = comp
-        self.regulations = regulations
+        self.rules = rules
         self.moves = moves
 
     def fragment(self):
@@ -108,9 +108,9 @@ class Game:
         fragments.append(self.name)
         fragments.append(", ")
         fragments.append(self.comp.fragment())
-        if len(self.regulations) != 0:
+        if len(self.rules) != 0:
             fragments.append(", rules:{")
-            fragments.append(', '.join( reg.fragment() for reg in self.regulations ))
+            fragments.append(', '.join( rule.fragment() for rule in self.rules ))
             fragments.append("}")
         if len(self.moves) != 0:
             fragments.append(", moves:{")
@@ -273,13 +273,13 @@ class Player:
         fragments.append(closer)
         return ''.join(fragments)
 
-class Regulation:
+class Rule:
     """
-    Defines a regulation associated with playing the game.
+    Defines a rule associated with playing the game.
 
-    A Regulation is a set of conditions which, if satisfied, require an effect to be performed on the state of the game. Regulations differ from interactions in that regulations should be executed whenever their conditions are met whereas interactions are only executed if a player plays the move associated with that interaction.
+    A Rule is a set of conditions which, if satisfied, require an effect to be performed on the state of the game. Rules differ from interactions in that rules should be executed whenever their conditions are met whereas interactions are only executed if a player plays the move associated with that interaction.
     
-    A regulation is composed from:
+    A rule is composed from:
         An identifier
         A scope from {initial | turnwise | movewise}
         A rule
@@ -348,7 +348,7 @@ class Body:
     """
     An expression made from Rule objects
     
-    An individual Regulation or Interaction could encompass multiple alternative sets of rules, enabling the resultant effect to differ dependent upon the circumstances in which they occur, i.e. if a then x else if b and c then y.
+    An individual Rule or Interaction could encompass multiple alternative sets of rules, enabling the resultant effect to differ dependent upon the circumstances in which they occur, i.e. if a then x else if b and c then y.
     
     Well formedness: (1) the last Rule block in the Rules list can optionally contain only effects. This gives a catch all set of effects to apply if none of the conditional elements of the Rules are satisfied and has the general form "if a then x else if b and c then y else z"; (2) The first Rule block in the Rules list can also contain only a single set of effects with no conditions. In this case we are specifying a set of mandatory effects that must be applied to the game state if this move is played regardless of whether there are any subsequent conditionals. NB. Subsequent conditionals may undo the effects of this block because of the linear manner in which effects are applied. Rules of this type have the general form "x and if b then c".
     """
