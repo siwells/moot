@@ -36,11 +36,11 @@ class DGDLDescription:
     """
     A class that represents a DGDL description. A DGDL description stores either a game or a system of games, whichever is defined at creation when an object is passed in. NB. Descriptions can be altered after creation as necessary subject to a validate() check on the syntactic (& semantic?) correctness of the resulting description.
     """
-    def __init__(self, description):
-        self.description = description
+    def __init__(self, system):
+        self.system = system
     
     def describe(self):
-        return self.description.fragment()
+        return self.system.fragment()
         
     def list_conditions(self):
         pass
