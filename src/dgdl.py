@@ -364,14 +364,14 @@ class Body:
         opener = "body:{"
         fragments.append(opener)
         if self.catchall:
-            fragments.append(' and '.join( rule.fragment() for rule in self.body))
+            fragments.append(' and '.join( conditional.fragment() for conditional in self.body))
         else:
-            fragments.append(' else '.join( rule.fragment() for rule in self.body))
+            fragments.append(' else '.join( conditional.fragment() for conditional in self.body))
         closer = "}"
         fragments.append(closer)
         return ''.join(fragments)
         
-class Rule:
+class Conditional:
     """
     Used to express a condition & what should happen as a result of that condition pertaining
     
