@@ -401,13 +401,16 @@ class Conditional:
         cond = ' and '.join(condition.fragment() for condition in self.conditions)
         fragments.append(cond)
         return ''.join(fragments)
-    
+
+    def conditions_list(self):
+        return self.conditions[:]
+
     def effects_fragment(self):
         fragments = []
         eff = ' and '.join(effect.fragment() for effect in self.effects)
         fragments.append(eff)
         return ''.join(fragments)
-        
+                
 class Effect:
     """
     Defines an atomic update of the game state
