@@ -50,7 +50,7 @@ class DGDLDescription:
         pass
     
     def list_games(self):
-        pass
+        return self.system.list_games()
     
     """
     Labels includes tokens & ids used in the game description
@@ -91,7 +91,13 @@ class System:
 
         fragments.append("}")
         return ''.join(fragments)
-
+    
+    def list_games(self):
+        game_list = []
+        for game in self.games:
+            game_list.append(game.get_name())
+        return game_list
+        
 class Game:
     """
     A Game composed from a composition, zero or more rules, and at least one move
@@ -118,6 +124,9 @@ class Game:
             fragments.append("}")
         fragments.append("}")
         return ''.join(fragments)
+    
+    def get_name(self):
+        return self.name
 
 class Composition:
     """
