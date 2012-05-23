@@ -19,20 +19,21 @@ class DescriptionFactory:
     """
     Scaffold add a little syntactic sugar to the description production process by generating an outline DGDLDescription object . The resulting description requires at least one move to be supplied using the add_move() method of the game Class in order to be a valid minimal game, otherwise the description as generated is NOT syntactically correct.
     """   
-    def scaffold(self, sys_id=None, gameid=None, magnitude="single", ordering="strict", players=["white", "black"]):
+    def scaffold(self, sys_id=None, gameid=None, magnitude="single", ordering="strict", players=["white", "black"], rules=[], moves=[]):
         turns = Turns(magnitude, ordering)
         part = Participants(len(players), len(players))
         player_list = []
         for name in players:
             player_list.append( Player(name) )
         comp = Composition(turns, part, player_list)
-        game = Game(gameid, comp, [], [])
+        game = Game(gameid, comp, rules, moves)
         if sys_id != None:
             sys = System(sys_id)
             sys.add_game(game)
             desc = DGDLDescription(sys)
             return desc
         desc = DGDLDescription(game)
+        
         return desc
         
 class DGDLDescription:
