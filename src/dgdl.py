@@ -34,7 +34,8 @@ class DescriptionFactory:
         
 class DGDLDescription:
     """
-    A class that represents a DGDL description. A DGDL description stores either a game or a system of games, whichever is defined at creation when an object is passed in. NB. Descriptions can be altered after creation as necessary subject to a validate() check on the syntactic (& semantic?) correctness of the resulting description.
+    A class that stores a DGDL system and provides a sugary interface to the system without needing to worry about what the system is built from, e.g. No need to deal with lower level objects such as Compositions, Rules or Moves. 
+    NB. Descriptions can be altered after creation as necessary subject to a validate() check on the syntactic (& semantic?) correctness of the resulting description.
     """
     def __init__(self, system):
         self.system = system
