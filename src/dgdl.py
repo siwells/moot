@@ -410,6 +410,9 @@ class Conditional:
         eff = ' and '.join(effect.fragment() for effect in self.effects)
         fragments.append(eff)
         return ''.join(fragments)
+
+    def effects_list(self):
+        return self.effects[:]
                 
 class Effect:
     """
