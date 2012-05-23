@@ -49,6 +49,9 @@ class DGDLDescription:
     def list_effects(self):
         pass
     
+    def list_games(self):
+        pass
+    
     """
     Labels includes tokens & ids used in the game description
     """
