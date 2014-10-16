@@ -1,21 +1,21 @@
 game:{
-    id:tinytest1,
+    id:Tiny_test_1,
     composition:{
         turns:{
             magnitude:single,
             ordering:strict
         },
         players:{min:2,max:2},
-        player:{id:w},
-        player:{id:b}
+        player:{id:W},
+        player:{id:B}
     },
     moves:{
         move:{
-            id:mv1,
+            id:Mv1,
             content:{!P1,P2},
             body:{ 
-                if con1{param1,p2,p3} then eff1{param2} and eff2{param3}, 
-                if con1{param1,p2,p3} then eff1{param2} 
+                if Con1{Param1,P2,P3} then Eff1{Param2} and Eff2{Param3}, 
+                if Con1{Param1,P2,P3} then Eff1{Param2} 
             }
         }
     }
