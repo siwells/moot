@@ -1,4 +1,4 @@
-grammar dgdl_v3 ;
+grammar dgdl ;
 game: GAME COLON LBRA ID COLON identifier COMMA composition (COMMA regulations)* (COMMA interactions)+ RBRA EOF;
 identifier: UCHAR(UCHAR|LCHAR|NUM|LINK)*;
 composition: COMPOSITION COLON LBRA turns COMMA participants (COMMA player)+ (COMMA store)* (COMMA rolelist)? RBRA;
