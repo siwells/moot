@@ -1,4 +1,4 @@
-Game            ::= game:{id:ID, Composition [,Regulation]* [,Interaction]+}
+Game            ::= game:{id:ID, Composition [,Regulations]? Interactions}
 Composition     ::= {Turns, Participants [,Player]+ [,Store]* [,RoleList]?}
 Turns           ::= turns:{magnitude:Magnitude, ordering:Ordering[, max:Number]?}
 Magnitude       ::= single | multiple
@@ -9,8 +9,10 @@ Store           ::= store:{id:ID, owner:{ID[, ID]*}, structure:Structure, visibi
 Structure       ::= set | queue | stack
 Visibility      ::= public | private
 RoleList        ::= roles:{ID[, ID]*}
+Regulations     ::= rules:{regulation [, regulation]*}
 Regulation      ::= rule:{id:ID, scope:Scope, RuleExpr}
 Scope           ::= initial | turnwise | movewise
+Interactions    ::= moves:{interaction [, interaction]*}
 Interaction     ::= move:{id:ID, content:{Content}, RuleExpr}
 Content         ::= {[!]?ID[, [!]?ID]*}
 RuleExpr        ::= body:{Effects | Rule [, Rule]*}
