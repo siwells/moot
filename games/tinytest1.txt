@@ -1,0 +1,22 @@
+game:{
+    id:tinytest1,
+    composition:{
+        turns:{
+            magnitude:single,
+            ordering:strict
+        },
+        players:{min:2,max:2},
+        player:{id:w},
+        player:{id:b}
+    },
+    moves:{
+        move:{
+            id:mv1,
+            content:{!P1,P2},
+            body:{ 
+                if con1{param1,p2,p3} then eff1{param2} and eff2{param3}, 
+                if con1{param1,p2,p3} then eff1{param2} 
+            }
+        }
+    }
+}
