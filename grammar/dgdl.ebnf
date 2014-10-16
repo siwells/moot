@@ -1,4 +1,3 @@
-System          ::= system:{id:ID [,Game]+} | Game
 Game            ::= game:{id:ID, Composition [,Regulation]* [,Interaction]+}
 Composition     ::= {Turns, Participants [,Player]+ [,Store]* [,RoleList]?}
 Turns           ::= turns:{magnitude:Magnitude, ordering:Ordering[, max:Number]?}
