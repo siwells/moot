@@ -8,7 +8,9 @@
 * What is the relation between labels and tokens?
 * Scoping of labels and tokens between games in a system?
 * well-formedness of game descriptions
-* remove commas?
+** Syntactic - Use ANTLR grammar to test syntactic conformance
+** Semantic - ??
+* remove commas? - No. They bring clarity & consistency to the description
 * how to represent tokens, locutions, and arguments?
 * SYMBOLS IN STRINGS (EBNF)
 * UNIT TESTS - start with basic classes and work way up until we have much better coverage
