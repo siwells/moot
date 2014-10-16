@@ -1,93 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-grammar dgdl;
-
-// System       ::= system:{id:ID [,Game]+} | Game
-system: SYSTEM COLON LBRA ID COLON id (COMMA game)+ RBRA | game; 
-
-// Game         ::= game:{id:ID, Composition [, Regulation]* [, Interaction]+}
-game: GAME COLON LBRA ID COLON id 
-      COMMA composition (COMMA regulations)* (COMMA interactions)+ RBRA;
-
-//Composition   ::= {Turns, Participants [,Player]+ [,Store]* [,RoleList]?}
+grammar dgdl_v3 ;
+game: GAME COLON LBRA ID COLON identifier COMMA composition (COMMA regulations)* (COMMA interactions)+ RBRA EOF;
+identifier: UCHAR(UCHAR|LCHAR|NUM|LINK)*;
 composition: COMPOSITION COLON LBRA turns COMMA participants (COMMA player)+ (COMMA store)* (COMMA rolelist)? RBRA;
-
-//Turns         ::= turns:{magnitude:Magnitude, 
-//                  ordering:Ordering[, max:Number]?}
-turns: TURNS COLON LBRA MAGNITUDE COLON magnitude 
-       COMMA ORDERING COLON ordering (COMMA MAX COLON NUM)? RBRA;
-
-//Magnitude     ::= single | multiple
-magnitude: SINGLE | MULTIPLE;
-
-//Ordering      ::= strict | liberal
-ordering: STRICT | LIBERAL;
-
-//Participants  ::= players:{min:Number, max:Number|undefined}
-participants: PLAYERS COLON LBRA MIN COLON NUM 
-              COMMA MAX COLON (NUM | UNDEFINED) RBRA;
-
-//Player        ::= player:{id:ID [, roleList]? }
-player: PLAYER COLON LBRA ID COLON id (COMMA rolelist)? RBRA;
-
-//Store         ::= store:{id:ID, owner:{ID[, ID]*}, 
-//                  structure:Structure, visibility:Visibility}
-store: STORE COLON LBRA ID COLON id COMMA OWNER COLON LBRA id (COMMA id)* RBRA
-       COMMA STRUCTURE COLON structure COMMA VISIBILITY COLON visibility RBRA;
-
-//Structure         ::= set | queue | stack
-structure: SET | QUEUE | STACK;
-
-//Visibility        ::= public | private
-visibility: PUBLIC | PRIVATE;
-
-//RoleList        ::= roles:{ID[, ID]*}
-rolelist: ROLES COLON LBRA id (COMMA id)* RBRA;
-
-//Regulations       ::= rules:{Regulation[, Regulation]*}
+turns: TURNS COLON LBRA MAGNITUDE COLON magnitude COMMA ORDERING COLON ordering (COMMA MAX COLON NUM)? RBRA;
+participants: PLAYERS COLON LBRA MIN COLON NUM COMMA MAX COLON (NUM | UNDEFINED) RBRA;
+player: PLAYER COLON LBRA ID COLON identifier (COMMA rolelist)? RBRA;
+rolelist: ROLES COLON LBRA identifier (COMMA identifier)* RBRA;
+store: STORE COLON LBRA ID COLON identifier COMMA OWNER COLON LBRA identifier (COMMA identifier)* RBRA COMMA STRUCTURE COLON structure COMMA VISIBILITY COLON visibility RBRA;
 regulations: RULES COLON LBRA regulation (COMMA regulation)* RBRA;
-//Regulation        ::= rule:{id:ID, scope:Scope, RuleExpr}
-regulation: RULE COLON LBRA ID COLON id 
-            COMMA SCOPE COLON scope COMMA ruleExpr RBRA;
-
-//Scope             ::= initial | turnwise | movewise
-scope: INITIAL | TURNWISE | MOVEWISE;
-
-//Interactions       ::= moves:{Move[, Move]*}
-interactions: MOVES COLON LBRA interaction (COMMA interaction)* RBRA;
-
-//Interaction       ::= move:{id:ID, content:Content, RuleExpr}
-interaction: MOVE COLON LBRA ID COLON id
-             COMMA CONTENT COLON content 
-             COMMA ruleExpr RBRA;
-
-//Content           ::= {[!]?ID[, [!]?ID]*}
-content: LBRA (NEG)? id (COMMA (NEG)? id)* RBRA;
-
-//RuleExpr          ::= body:{Effects | Rule [, Rule]*} 
+regulation: RULE COLON LBRA ID COLON identifier COMMA SCOPE COLON scope COMMA ruleExpr RBRA;
 ruleExpr: BODY COLON LBRA (effects|rle (COMMA rle)*) RBRA;
-            
-//Rule              ::= if Condition [and Condition]* then Effects
 rle: IF condition (AND condition)* THEN effects;
-
-//Effects           ::= Effect[ and Effect]*
 effects: effect (AND effect)*;
+effect: identifier LBRA param (COMMA param)* RBRA;
+condition: identifier LBRA param (COMMA param)* RBRA;
+param: identifier | content;
+content: LBRA (NEG)? identifier (COMMA (NEG)? identifier)* RBRA;
+interactions: MOVES COLON LBRA interaction (COMMA interaction)* RBRA;
+interaction: MOVE COLON LBRA ID COLON identifier COMMA CONTENT COLON content COMMA ruleExpr RBRA;
 
-//Effect            ::= ID{Param[, Param]*}
-effect: id LBRA param (COMMA param)* RBRA;
-
-//Condition         ::= ID{Param[, Param]*}
-condition: id LBRA param (COMMA param)* RBRA;
-
-//ID                ::= UChar|LChar[UChar|LChar|Num|Link]*
-id: (UCHAR|LCHAR)+(UCHAR|LCHAR|NUM|LINK)*;
-
-//Param             ::= ID | Content
-param: id | content;
+magnitude: SINGLE | MULTIPLE;
+ordering: STRICT | LIBERAL;
+structure: SET | QUEUE | STACK;
+visibility: PUBLIC | PRIVATE;
+scope: INITIAL | TURNWISE | MOVEWISE;
 
 AND:    'and';
 BODY:   'body';
@@ -130,13 +66,13 @@ TURNWISE: 'turnwise';
 THEN:   'then';
 UNDEFINED:  'undefined';
 VISIBILITY: 'visibility';
-
-LBRA: '{';
-RBRA: '}';
-COLON: ':';
-COMMA: ',';
+COLON   : ':';
+COMMA   : ',';
+LBRA    : '{' ;
+RBRA    : '}' ;
+LINK:   '_';
 
 NUM:    [0-9]+;
 UCHAR:  [A-Z]+;
-LCHAR:  [a-z]+;
-LINK:   '_';
+LCHAR:  [a-z]+;       
+WS:     [ \t\r\n]+ -> skip; 
